@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { formatMessageDate, getRandomImageUrl } from "../../../utils";
+import { formatMessageDate, getRandomImageUrl } from "../../utils";
 
 const ChatItem = ({
   name,
