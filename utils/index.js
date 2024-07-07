@@ -88,3 +88,26 @@ export function findMostRecentEntry(response) {
 
 
 
+ export function sortAndGroupMessagesByDate(messages) {
+      messages.sort((a, b) => {
+          const dateA = new Date(a.updated_at);
+          const dateB = new Date(b.updated_at);
+          return dateB - dateA;
+      });
+  
+      const groupedMessages = {};
+      messages.forEach(message => {
+          const date = new Date(message.updated_at).toLocaleDateString();
+          if (!groupedMessages[date]) {
+              groupedMessages[date] = [];
+          }
+          groupedMessages[date].push(message);
+      });
+  
+      const result = Object.keys(groupedMessages).map(date => ({
+          date: date,
+          messages: groupedMessages[date]
+      }));
+      
+      return result;
+  }

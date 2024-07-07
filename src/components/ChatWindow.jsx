@@ -3,6 +3,9 @@ import axios from 'axios';
 import MessageBubble from './ui/MessageBubble';
 import MicrophoneSvg from '../../public/images/microphone.svg'; 
 import TitleBar from './ui/TitleBar';
+import { sortAndGroupMessagesByDate } from '../../utils';
+
+
 
 const ChatWindow = ({ chat }) => {
   const currentChat = chat.id
@@ -28,9 +31,9 @@ const ChatWindow = ({ chat }) => {
     const fetchMessages = async (chatId, pageNum) => {
       setLoading(true);
       try {
-        const response = await axios.get(`https://devapi.beyondchats.com/api/get_chat_messages?chat_id=${chatId}&page=${pageNum}`);
-        const newMessages = response.data.data.reverse(); // Reverse the order of new messages
-        setMessages(prevMessages => [...prevMessages, ...newMessages]); // Prepend new messages to the existing ones
+        const response = await axios.get(`https://devapi.beyondchats.com/api/get_chat_messages?chat_id=${chatId}`);
+        const message = sortAndGroupMessagesByDate(response.data.data)
+        setMessages(() => [...message]); // Prepend new messages to the existing ones
         setLoading(false);
       } catch (error) {
         console.error('Error fetching messages:', error);
@@ -126,7 +129,8 @@ const ChatWindow = ({ chat }) => {
         style={{background: "none" }}
       >
         <div className='lg:max-w-[60%] md:max-w-[90%] mx-auto'>
-          {messages.map(message => (
+          {console.log(messages[0])}
+          {/* {messages.messages.map(message => (
             <MessageBubble
               key={message.id}
               date = {new Date(message.created_at)}
@@ -134,7 +138,7 @@ const ChatWindow = ({ chat }) => {
               sender={message.sender.name || 'Deleted User'}
               isOwnMessage={message.sender_id === 1}
             />
-          ))}
+          ))} */}
           {loading && <div className="text-center">Loading...</div>}
           <div ref={bottomRef} /> {/* Ensure bottomRef is correctly positioned */}
         </div>
