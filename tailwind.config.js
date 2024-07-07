@@ -4,11 +4,17 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  backgroundImage: {
-    'chat-window-bg': "url('/public/images/BackGroundImage.png')",
-  },
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        Primary: "#3390EC",
+        Secondary: "#229ED9",
+        White: "#FFFFFF",
+      },
+      backgroundImage: {
+        'chat-window-bg': "url('/public/images/BackGroundImage.png')",
+      },
+    },
   },
   plugins: [],
 }

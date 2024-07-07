@@ -129,6 +129,7 @@ const ChatWindow = ({ chat }) => {
           {messages.map(message => (
             <MessageBubble
               key={message.id}
+              date = {new Date(message.created_at)}
               message={message.message}
               sender={message.sender.name || 'Deleted User'}
               isOwnMessage={message.sender_id === 1}

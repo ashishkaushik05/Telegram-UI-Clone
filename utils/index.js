@@ -1,4 +1,3 @@
-import axios from "axios";
 
 export function formatMessageDate(dateStringFromServer) {
   const dateObject = new Date(dateStringFromServer);
@@ -63,3 +62,29 @@ export function getRandomImageUrl() {
   const randomInt = Math.floor(Math.random() * 75) + 1;
   return `https://xsgames.co/randomusers/assets/avatars/female/${randomInt}.jpg`;
 }
+
+
+export function findMostRecentEntry(response) {
+  if (response.status !== "success" || response.status_code !== 200) {
+      throw new Error("Invalid response");
+  }
+
+  const messages = response.data;
+
+  if (!Array.isArray(messages) || messages.length === 0) {
+      throw new Error("No data available");
+  }
+
+  let mostRecentEntry = messages[0];
+
+  for (let i = 1; i < messages.length; i++) {
+      if (new Date(messages[i].updated_at) > new Date(mostRecentEntry.updated_at)) {
+          mostRecentEntry = messages[i];
+      }
+  }
+
+  return mostRecentEntry;
+}
+
+
+

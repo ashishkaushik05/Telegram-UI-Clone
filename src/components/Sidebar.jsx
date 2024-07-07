@@ -3,7 +3,7 @@ import axios from 'axios';
 import ChatItem from './ChatItem';
 import SidebarHeader from './SidebarHeader';
 
-const Sidebar = ({ setCurrentChat }) => {
+const Sidebar = ({ setCurrentChat, currentChat }) => {
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -75,7 +75,7 @@ const Sidebar = ({ setCurrentChat }) => {
           chats.map(chat => (
             <ChatItem
               key={chat.id}
-              className="p-2 border-b border-gray-200"
+              className="p-2 border-b border-gray-200 hover:bg-Primary"
               name={chat.creator.name ? chat.creator.name : 'Deleted User'}
               msgCount={chat.msg_count}
               createdAt={chat.updated_at}
@@ -83,6 +83,7 @@ const Sidebar = ({ setCurrentChat }) => {
               status={chat.status}
               chat={chat}
               setCurrentChat={setCurrentChat}
+              isActive={currentChat && currentChat.id === chat.id}
             />
           ))
         )}
