@@ -14,16 +14,13 @@ function App() {
 
   return (
     <div className="flex flex-row h-screen">
- (
-        <div className={`sideBar flex flex-col md:max-w-[420px] h-full md:w-full 
-        md:${showSideBar ? "hidden" : ""}` }>
+        <div className={`sideBar flex flex-col md:max-w-[420px] h-full md:w-full ` }>
         <Sidebar
           setCurrentChat={handleChatItemClick}
           currentChat={currentChat}
           showSideBar={showSideBar}
         />
         </div>  
-      )
       <div
         className={`flex flex-col h-full w-full overflow-hidden`}
         style={{
@@ -34,14 +31,11 @@ function App() {
         }}
       >
         {currentChat && (
-          <>
             <ChatWindow
               className="flex-1"
               chat={currentChat}
               setShowSideBar={setShowSideBar}
             />
-            {/* <UserInfo chat={currentChat} /> */}
-          </>
         )}
       </div>
     </div>

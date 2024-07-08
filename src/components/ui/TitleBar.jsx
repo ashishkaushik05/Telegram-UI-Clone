@@ -12,8 +12,9 @@ const TitleBar = ({ chat, setShowSideBar }) => {
   return (
     <div className="flex h-[60px] items-center justify-between p-4 bg-white border-b border-gray-200">
       <div className="flex flex-row items-center">
+
         <div
-          className="w-12 h-12 ml-3 hover:bg-slate-300 hover:cursor-pointer rounded-full"
+          className="md:hidden w-12 h-12 ml-3 hover:bg-slate-300 hover:cursor-pointer rounded-full"
           onClick={() => {
             setShowSideBar((prev) => !prev);
           }}
@@ -24,6 +25,7 @@ const TitleBar = ({ chat, setShowSideBar }) => {
             className="rounded-full w-12 h-12 opacity-80"
           />
         </div>
+
         <div className="w-12 h-12 ml-3">
           <img src={chat.imageUrl} alt="profile" className="rounded-full" />
         </div>

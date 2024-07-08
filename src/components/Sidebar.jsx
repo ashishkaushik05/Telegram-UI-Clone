@@ -3,7 +3,7 @@ import axios from 'axios';
 import ChatItem from './ChatItem';
 import SidebarHeader from './SidebarHeader';
 
-const Sidebar = ({ setCurrentChat, currentChat }) => {
+const Sidebar = ({setCurrentChat, currentChat}) => {
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -60,14 +60,14 @@ const Sidebar = ({ setCurrentChat, currentChat }) => {
   return (
     <>
 
-      <div className="bg-white border-r borderh-[60px] border-gray-200 sidebar-hidden sidebar-min-width ">
+      <div className="bg-white border-r borderh-[60px] border-gray-200 max-w-">
         <SidebarHeader />
       </div>
 
       <div
         className="bg-white border-r border-gray-200 sidebar-hidden sidebar-min-width px-2 overflow-y-auto flex-grow"
         ref={sidebarRef}
-        style={{ height: 'calc(100vh - 100px)' }} 
+       
       >
         {chats.length === 0 && !loading ? (
           <div>No chats available</div>
