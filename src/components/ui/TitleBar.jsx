@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { FiSearch, FiMoreVertical, FiPhone } from "react-icons/fi"; // Import icons from react-icons
+import { FiSearch, FiMoreVertical, FiPhone } from "react-icons/fi";
+import backArrow from '../../../public/images/backArrow.svg';
 
-const TitleBar = ({ chat }) => {
+const TitleBar = ({ chat , setShowSideBar}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -11,6 +12,12 @@ const TitleBar = ({ chat }) => {
   return (
     <div className="flex h-[60px] items-center justify-between p-4 bg-white border-b border-gray-200">
       <div className="flex flex-row items-center">
+      <div className="w-12 h-12 ml-3 hover:bg-slate-300 hover:cursor-pointer rounded-full" 
+      onClick={()=>{
+        setShowSideBar((prev) => !prev);
+      }}>
+          <img src={backArrow} alt="Back Button" className="rounded-full w-12 h-12 opacity-80" />
+        </div>
         <div className="w-12 h-12 ml-3">
           <img src={chat.imageUrl} alt="profile" className="rounded-full" />
         </div>

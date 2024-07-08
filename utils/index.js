@@ -88,6 +88,8 @@ export function findMostRecentEntry(response) {
 
 
 
+
+
  export function sortAndGroupMessagesByDate(messages) {
       messages.sort((a, b) => {
           const dateA = new Date(a.updated_at);
@@ -109,5 +111,33 @@ export function findMostRecentEntry(response) {
           messages: groupedMessages[date]
       }));
       
-      return result;
+      return result.reverse();
   }
+
+
+  export function convertDate(dateString) {
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June', 
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+  
+    const [month, day, year] = dateString.split('/');
+  
+    const monthName = months[parseInt(month) - 1];
+  
+    // Return the formatted date
+    return `${parseInt(day)} ${monthName}`;
+  }
+
+  export const getTimeFromDate = (dateString) => {
+    const date = new Date(dateString);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = hours % 12 || 12;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+  
+    return `${formattedHours}:${formattedMinutes} ${ampm}`;
+  };

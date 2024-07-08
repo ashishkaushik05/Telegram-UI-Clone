@@ -11,6 +11,7 @@ const Sidebar = ({ setCurrentChat, currentChat }) => {
   const [isFetching, setIsFetching] = useState(false);
   const sidebarRef = useRef(null);
 
+
   useEffect(() => {
     const fetchChats = async () => {
       try {
@@ -31,7 +32,7 @@ const Sidebar = ({ setCurrentChat, currentChat }) => {
   const handleScroll = () => {
     if (
       sidebarRef.current.scrollHeight - sidebarRef.current.scrollTop <=
-        sidebarRef.current.clientHeight + 50 && // add a small buffer for scroll precision
+        sidebarRef.current.clientHeight + 50 &&
       !isFetching &&
       hasMore
     ) {
@@ -57,17 +58,16 @@ const Sidebar = ({ setCurrentChat, currentChat }) => {
   }, [chats]);
 
   return (
-    <div className='flex flex-col h-full'>
-      {/* Sidebar Header */}
-      <div className="bg-white border-r h-[60px] border-gray-200 sidebar-hidden sidebar-min-width ">
+    <>
+
+      <div className="bg-white border-r borderh-[60px] border-gray-200 sidebar-hidden sidebar-min-width ">
         <SidebarHeader />
       </div>
 
-      {/* Sidebar Chats */}
       <div
         className="bg-white border-r border-gray-200 sidebar-hidden sidebar-min-width px-2 overflow-y-auto flex-grow"
         ref={sidebarRef}
-        style={{ height: 'calc(100vh - 100px)' }} // Ensure height is set for scrolling
+        style={{ height: 'calc(100vh - 100px)' }} 
       >
         {chats.length === 0 && !loading ? (
           <div>No chats available</div>
@@ -90,7 +90,8 @@ const Sidebar = ({ setCurrentChat, currentChat }) => {
         {loading && <div className="text-center py-4">Loading...</div>}
         {isFetching && <div className="text-center py-4">Loading more chats...</div>}
       </div>
-    </div>
+
+    </>
   );
 };
 
