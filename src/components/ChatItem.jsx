@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { formatMessageDate, getRandomImageUrl, findMostRecentEntry } from "../../utils";
-import axios from "axios";
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from "react";
+import { formatMessageDate, getRandomImageUrl } from "../../utils";
 
 const ChatItem = ({
   name,

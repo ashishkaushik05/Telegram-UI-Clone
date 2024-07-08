@@ -1,4 +1,3 @@
-import React from "react";
 import CrossImage from "../../../public/images/cross.png"
 
 const UserInfo = (chat) => {
